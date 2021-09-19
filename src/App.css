@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
+h3 a{
+  color: rgba(73, 73, 73, 0.658);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Job h3{
+  margin-bottom: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*{
+  margin: 0px;
+  padding: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loading{
+  margin-top: 200px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transform: scale(5);
 }
 
-.App-link {
-  color: #61dafb;
+.App{
+  padding: 0 10px;
+  margin: 20px auto;
+  width: 1004px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 1024px){
+  .App{
+    width: calc(100% - 20px);
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.SearchBar{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns:  2fr 2fr 150px ;
+  gap: 10px;
+}
+
+.JobListing{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 20px;
+}
+
+.JobDesc{
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.363);
+  border-radius: 5px;
+  height: 90vh;
+  overflow-y: scroll;
+  scroll-behavior:smooth;
+  position: sticky;
+  top: 5vh;
+}
+
+.JobDesc.empty{
+  color:rgba(73, 73, 73, 0.658);
+  font-size: 12px;
+  text-align: center;
+  height: 100%;
+  overflow-y: hidden;
+  position: relative;
+  top: 0vh;
+}
+
+.JobDesc li{
+  margin-left: 20px;
+}
+
+.Job{
+  padding: 20px;
+  border:1px solid rgba(0, 0, 0, 0.363);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Job + .Job {
+  margin-top: 20px;
+}
+
+.Job.selected{
+  border-color: rgb(0, 0, 151);
+}
+
+.subtitle{
+  font-weight: 400;
+  color: rgba(73, 73, 73, 0.658);
+}
+
+.jobDate{
+  font: 400 12px sans-serif;
+  color: rgba(73, 73, 73, 0.658);
+  margin-top: 20px;
+}
+
+.JobListHeader{
+  padding: 20px;
+  font-weight: 400;
+}
+
+.order a:not(.active){
+  color: rgb(153, 153, 153);
+}
+
+.order a:not(.active):hover{
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.order a.active{
+  font-weight: bold; 
+  cursor: pointer;
+}
+
+hr{
+  margin: 20px 0;
 }
