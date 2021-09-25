@@ -30,9 +30,9 @@ const JobListHeader = (props: Props): JSX.Element=> {
       <p className="subtitle">{resumenTexto()}</p>
       <p className="order">
         {"Ordenar por: "} 
-        <a href="/#" className={props.orderBy === "title" ? "active" : ""} onClick={()=>props.onSetOrderByChange("title")}>nombre</a>
+        <button className={props.orderBy === "title" ? "active" : ""} onClick={()=>props.onSetOrderByChange("title")}>nombre</button>
         {" - "} 
-        <a href="/#" className={props.orderBy === "date" ? "active" : ""} onClick={()=>props.onSetOrderByChange("date")}>fecha</a>
+        <button className={props.orderBy === "date" ? "active" : ""} onClick={()=>props.onSetOrderByChange("date")}>fecha</button>
       </p>
     </div>
   )

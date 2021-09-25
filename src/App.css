@@ -94,17 +94,24 @@ h3 a{
   font-weight: 400;
 }
 
-.order a:not(.active){
+.order button{
+  background: none;
+  border: none;
+  color: #069;
+  cursor: pointer;
+}
+
+.order button:not(.active){
   color: rgb(153, 153, 153);
 }
 
-.order a:not(.active):hover{
+.order button:not(.active):hover{
   color: rgb(0, 0, 0);
   text-decoration: underline;
   cursor: pointer;
 }
 
-.order a.active{
+.order button.active{
   font-weight: bold; 
   cursor: pointer;
 }
