@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import { AutoComplete, Button } from 'antd';
-import {JobInfoInterface} from "../../interfaces/jobInterfaces"
+import {JobInfoInterface} from "../interfaces/jobInterfaces"
 
 interface Props extends JobInfoInterface{
   titleOptions: {value: string}[]

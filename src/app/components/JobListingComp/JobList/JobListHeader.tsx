@@ -1,4 +1,4 @@
-import {JobInfoInterface} from "../../../../interfaces/jobInterfaces"
+import {JobInfoInterface} from "../../../interfaces/jobInterfaces"
 
 
 interface Props {

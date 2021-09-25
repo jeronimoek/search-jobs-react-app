@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import './App.css';
-import SearchBar from './app/components/SearchBar/SearchBar'
-import JobListing from './app/components/JobListing/JobListing'
+import SearchBar from './app/components/SearchBar'
+import JobListing from './app/components/JobListing'
 import ApolloClient, { gql, OperationVariables }from 'apollo-boost';
 import { ApolloProvider, Query, QueryResult } from 'react-apollo';
 import { SyncOutlined } from '@ant-design/icons';
 import {JobInterface ,JobInfoInterface} from "./app/interfaces/jobInterfaces"
+import SourceCode from './app/components/SourceCode';
 
 interface Props extends JobInfoInterface{
   handleJobTitleChange:(val: string)=>void
@@ -76,6 +77,7 @@ const JobsQuery = (props: Props): JSX.Element => {
             jobsLoc={props.jobsLoc}
             data={data}
           />
+          <SourceCode/>
         </div>
       )
     })

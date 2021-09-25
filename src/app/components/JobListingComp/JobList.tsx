@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Job from './JobList/Job'
 import JobListHeader from './JobList/JobListHeader'
-import {JobInterface, JobInfoInterface} from "../../../interfaces/jobInterfaces"
+import {JobInterface, JobInfoInterface} from "../../interfaces/jobInterfaces"
 
 interface Props {
   onSelectedJobIdChange: (jobId: string)=>any;

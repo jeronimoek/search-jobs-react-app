@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown'
-import {JobInterface} from "../../interfaces/jobInterfaces"
+import {JobInterface} from "../interfaces/jobInterfaces"
 
 interface Props {
   selectedJob: JobInterface

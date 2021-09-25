@@ -20,7 +20,8 @@ h3 a{
 
 .App{
   padding: 0 10px;
-  margin: 20px auto;
+  padding: 20px 0px;
+  margin: 0px auto;
   width: 1004px;
 }
 
@@ -118,6 +119,15 @@ h3 a{
 
 hr{
   margin: 20px 0;
+}
+
+.SourceCode{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 9999px;
+  background-color: white;
+  box-shadow: 0 1px 3px 3px white;
 }
 
 @media only screen and (max-width: 1024px){

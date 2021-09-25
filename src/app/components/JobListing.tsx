@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import JobDesc from '../JobDesc/JobDesc'
-import JobList from './JobListing/JobList'
-import {JobInterface, JobInfoInterface, CityInterface} from "../../interfaces/jobInterfaces"
+import JobDesc from './JobDesc'
+import JobList from './JobListingComp/JobList'
+import {JobInterface, JobInfoInterface, CityInterface} from "../interfaces/jobInterfaces"
 
 interface Props extends JobInfoInterface{
   data:{

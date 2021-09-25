@@ -1,4 +1,4 @@
-import {JobInterface, CityInterface} from "../../../../interfaces/jobInterfaces"
+import {JobInterface, CityInterface} from "../../../interfaces/jobInterfaces"
 
 interface Props {
   job: JobInterface
