@@ -1,19 +1,26 @@
-import React, {useState} from 'react';
+import {JobInterface, CityInterface} from "../../../../interfaces/jobInterfaces"
 
-function Job(props){
+interface Props {
+  job: JobInterface
+  onSelectedJobIdChange: (jobId: string)=>any;
+  selected: boolean
+}
+
+const Job = (props: Props): JSX.Element => {
   const job = props.job
   const company = job.company
 
-  var citiesNames = ""
-  job.cities.map(city => {
+  var citiesNames: string = ""
+  job.cities.map((city: CityInterface) => {
     citiesNames += `${city.name}, ${city.country.name}. `
+    return city
   })
 
-  const millisNow = new Date().getTime()
-  const millisThen = new Date(job.createdAt).getTime()
-  const secondsSinceThen = Math.round((millisNow - millisThen)/1000)
+  const millisNow: number = new Date().getTime()
+  const millisThen: number = new Date(job.createdAt).getTime()
+  const secondsSinceThen: number = Math.round((millisNow - millisThen)/1000)
     
-  var createdAgo = ""
+  var createdAgo: string = ""
   if(secondsSinceThen < 1){
     createdAgo = "just now"
   } else if(secondsSinceThen < 60){

@@ -24,12 +24,6 @@ h3 a{
   width: 1004px;
 }
 
-@media only screen and (max-width: 1024px){
-  .App{
-    width: calc(100% - 20px);
-  }
-}
-
 .SearchBar{
   display: grid;
   grid-auto-flow: column;
@@ -117,4 +111,10 @@ h3 a{
 
 hr{
   margin: 20px 0;
+}
+
+@media only screen and (max-width: 1024px){
+  .App{
+    width: calc(100% - 20px);
+  }
 }
