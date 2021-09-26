@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import './App.css';
+import './App.scss';
 import SearchBar from './app/components/SearchBar'
 import JobListing from './app/components/JobListing'
 import ApolloClient, { gql, OperationVariables }from 'apollo-boost';
