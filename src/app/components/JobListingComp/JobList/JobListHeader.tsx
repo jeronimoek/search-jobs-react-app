@@ -1,17 +1,23 @@
+import { useContext } from "react"
 import {JobInfoInterface} from "../../../interfaces/jobInterfaces"
+import jobsInfoContext from "../../../jobsInfoContext"
 
 
 interface Props {
   onSetOrderByChange: (order: string)=>void;
   orderBy: string
   quantity: number
-  jobsInfo: JobInfoInterface
+}
+
+interface Info extends JobInfoInterface{
+  onJobTitleChange:(val: string)=>void
+  onJobLocChange:(val: string)=>void
 }
 
 const JobListHeader = (props: Props): JSX.Element=> {
-  
-  const jobsLoc = props.jobsInfo.jobsLoc
-  const jobsTitle = props.jobsInfo.jobsTitle
+  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
+  const jobsLoc = jobsInfo.jobsLoc
+  const jobsTitle = jobsInfo.jobsTitle
   const resumenTexto = () => {
     let txt: string = ""
     if(jobsLoc || jobsTitle){

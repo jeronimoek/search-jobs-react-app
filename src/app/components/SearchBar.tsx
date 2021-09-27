@@ -1,19 +1,25 @@
 import 'antd/dist/antd.css';
 import { AutoComplete, Button } from 'antd';
 import {JobInfoInterface} from "../interfaces/jobInterfaces"
+import { useContext } from 'react';
+import jobsInfoContext from '../jobsInfoContext';
 
-interface Props extends JobInfoInterface{
+interface Props{
   titleOptions: {value: string}[]
   countryOptions: {value: string}[]
+}
+
+interface Info extends JobInfoInterface{
   onJobTitleChange:(val: string)=>void
   onJobLocChange:(val: string)=>void
 }
 
 const SearchBar = (props: Props): JSX.Element => {
+  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
 
-  const AutocompleteTitles = (props: Props) => (
+  const AutocompleteTitles = () => (
     <AutoComplete
-      value={props.jobsTitle}
+      value={jobsInfo.jobsTitle}
       style={{
         width: "100%",
       }}
@@ -22,12 +28,12 @@ const SearchBar = (props: Props): JSX.Element => {
       filterOption={(inputValue, option) =>
         option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
-      onChange={(e)=>props.onJobTitleChange(e)}
+      onChange={(e)=>jobsInfo.onJobTitleChange(e)}
     />
   );
-  const AutocompleteCountries = (props: Props) => (
+  const AutocompleteCountries = () => (
     <AutoComplete
-      value={props.jobsLoc}
+      value={jobsInfo.jobsTitle}
       style={{
         width: "100%",
       }}
@@ -36,15 +42,15 @@ const SearchBar = (props: Props): JSX.Element => {
       filterOption={(inputValue, option) =>
         option!.value!.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
-      onChange={(e)=>props.onJobLocChange(e)}
+      onChange={(e)=>jobsInfo.onJobLocChange(e)}
     />
   );
 
   return(
     <div className="SearchBar">
-      {AutocompleteTitles(props)}
-      {AutocompleteCountries(props)}
-      <Button onClick={()=>{props.onJobLocChange("");props.onJobTitleChange("")}}>Clear search</Button>
+      {AutocompleteTitles()}
+      {AutocompleteCountries()}
+      <Button onClick={()=>{jobsInfo.onJobLocChange("");jobsInfo.onJobTitleChange("")}}>Clear search</Button>
     </div>
   )
 }

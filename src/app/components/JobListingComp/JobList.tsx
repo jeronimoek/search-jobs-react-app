@@ -1,12 +1,11 @@
 import {useState} from 'react';
 import Job from './JobList/Job'
 import JobListHeader from './JobList/JobListHeader'
-import {JobInterface, JobInfoInterface} from "../../interfaces/jobInterfaces"
+import {JobInterface} from "../../interfaces/jobInterfaces"
 
 interface Props {
   onSelectedJobIdChange: (jobId: string)=>any;
   jobs: JobInterface[]
-  jobsInfo: JobInfoInterface
   selectedJob: {
     id: string
   } 
@@ -53,7 +52,7 @@ const JobList = (props: Props): JSX.Element => {
 
   return(
     <div className="jobList">
-      <JobListHeader onSetOrderByChange={handleSetOrderByChange} orderBy={orderBy} quantity={props.jobs.length} jobsInfo={props.jobsInfo}/>
+      <JobListHeader onSetOrderByChange={handleSetOrderByChange} orderBy={orderBy} quantity={props.jobs.length}/>
       {jobComps}
     </div>
   )

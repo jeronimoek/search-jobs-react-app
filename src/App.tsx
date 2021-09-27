@@ -7,17 +7,13 @@ import { ApolloProvider, Query, QueryResult } from 'react-apollo';
 import { SyncOutlined } from '@ant-design/icons';
 import {JobInterface ,JobInfoInterface} from "./app/interfaces/jobInterfaces"
 import SourceCode from './app/components/SourceCode';
-
-interface Props extends JobInfoInterface{
-  handleJobTitleChange:(val: string)=>void
-  handleJobLocChange:(val: string)=>void
-}
+import jobsInfoContext from './app/jobsInfoContext'
 
 const client = new ApolloClient({
   uri: "https://api.graphql.jobs/"
 })
 
-const JobsQuery = (props: Props): JSX.Element => {
+const JobsQuery = (): JSX.Element => {
   return <Query query={
     gql`{
       countries{
@@ -66,15 +62,9 @@ const JobsQuery = (props: Props): JSX.Element => {
           <SearchBar
             titleOptions={jobsTitles}
             countryOptions={jobsCountries}
-            jobsTitle={props.jobsTitle}
-            jobsLoc={props.jobsLoc}
-            onJobTitleChange={props.handleJobTitleChange}
-            onJobLocChange={props.handleJobLocChange}
           />
           <hr/>
           <JobListing
-            jobsTitle={props.jobsTitle}
-            jobsLoc={props.jobsLoc}
             data={data}
           />
           <SourceCode/>
@@ -100,12 +90,16 @@ const App = (): JSX.Element => {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <JobsQuery 
-          handleJobLocChange={handleJobLocChange} 
-          handleJobTitleChange={handleJobTitleChange}
-          jobsTitle={jobsTitle}
-          jobsLoc={jobsLoc}
-        />
+        <jobsInfoContext.Provider value={{
+          jobsInfo: {
+            jobsTitle: jobsTitle, 
+            jobsLoc: jobsLoc, 
+            onJobLocChange: handleJobLocChange,
+            onJobTitleChange: handleJobTitleChange
+          }
+        }}>
+          <JobsQuery/>
+        </jobsInfoContext.Provider>
       </div>
     </ApolloProvider>
   );

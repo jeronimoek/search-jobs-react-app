@@ -1,17 +1,24 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import JobDesc from './JobDesc'
 import JobList from './JobListingComp/JobList'
 import {JobInterface, JobInfoInterface, CityInterface} from "../interfaces/jobInterfaces"
+import jobsInfoContext from '../jobsInfoContext';
 
-interface Props extends JobInfoInterface{
+interface Props{
   data:{
     jobs: JobInterface[]
   }
 }
 
+interface Info extends JobInfoInterface{
+  onJobTitleChange:(val: string)=>void
+  onJobLocChange:(val: string)=>void
+}
+
 const JobListing = (props: Props): JSX.Element => {
 
   const [selectedJobId, setSelectedJobId] = useState("")
+  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
   
   const handleSelectedJobIdChange = (newSelectedJobId: string): void => {
     setSelectedJobId(newSelectedJobId)
@@ -20,12 +27,12 @@ const JobListing = (props: Props): JSX.Element => {
   const jobs: JobInterface[] = []
   
   props.data.jobs.map((job: JobInterface) => {
-    if(job.title.toUpperCase().indexOf(props.jobsTitle.toUpperCase()) === -1){
+    if(job.title.toUpperCase().indexOf(jobsInfo.jobsTitle.toUpperCase()) === -1){
       return job
     }
     let count = 0
     job.cities.map((city: CityInterface) => {
-      if(city.country.name.toUpperCase().indexOf(props.jobsLoc.toUpperCase()) >= 0){
+      if(city.country.name.toUpperCase().indexOf(jobsInfo.jobsLoc.toUpperCase()) >= 0){
         count++
       }
       return city
@@ -39,14 +46,9 @@ const JobListing = (props: Props): JSX.Element => {
 
   const selectedJob: JobInterface = jobs.find(job => job.id === selectedJobId)!
 
-  const jobsInfo: JobInfoInterface = {
-    jobsLoc:    props.jobsLoc,
-    jobsTitle:  props.jobsTitle
-  }
-
   return(
     <div className="JobListing">
-      <JobList jobs={jobs} onSelectedJobIdChange={handleSelectedJobIdChange} jobsInfo={jobsInfo} selectedJob={selectedJob}/>
+      <JobList jobs={jobs} onSelectedJobIdChange={handleSelectedJobIdChange} selectedJob={selectedJob}/>
       <JobDesc selectedJob={selectedJob}/>
     </div>
   )
