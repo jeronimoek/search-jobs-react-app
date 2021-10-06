@@ -25,3 +25,8 @@ export interface JobInfoInterface{
   jobsLoc: string
   jobsTitle: string
 }
+
+export interface JobInfoHandlersInterface extends JobInfoInterface{
+  onJobTitleChange:(val: string)=>void
+  onJobLocChange:(val: string)=>void
+}

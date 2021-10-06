@@ -1,50 +1,36 @@
 import 'antd/dist/antd.css';
 import { AutoComplete, Button } from 'antd';
-import {JobInfoInterface} from "../interfaces/jobInterfaces"
+import {JobInfoHandlersInterface, JobInfoInterface} from "../interfaces/jobInterfaces"
 import { useContext } from 'react';
 import jobsInfoContext from '../jobsInfoContext';
+import { OptionData, OptionGroupData } from 'rc-select/lib/interface';
 
 interface Props{
   titleOptions: {value: string}[]
   countryOptions: {value: string}[]
 }
 
-interface Info extends JobInfoInterface{
-  onJobTitleChange:(val: string)=>void
-  onJobLocChange:(val: string)=>void
-}
-
-const SearchBar = (props: Props): JSX.Element => {
-  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
-
-  const AutocompleteTitles = () => (
+const NewAutoComplete = (jobContext:any, jobProp:string, onJobPropChange:string, options:(OptionData | OptionGroupData)[]):JSX.Element => {
+  return (
     <AutoComplete
-      value={jobsInfo.jobsTitle}
+      value={jobContext[jobProp]}
       style={{
         width: "100%",
       }}
-      options={props.titleOptions}
+      options={options}
       placeholder="Title"
       filterOption={(inputValue, option) =>
         option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
       }
-      onChange={(e)=>jobsInfo.onJobTitleChange(e)}
+      onChange={(e)=>jobContext[onJobPropChange](e)}
     />
-  );
-  const AutocompleteCountries = () => (
-    <AutoComplete
-      value={jobsInfo.jobsTitle}
-      style={{
-        width: "100%",
-      }}
-      options={props.countryOptions}
-      placeholder="Country"
-      filterOption={(inputValue, option) =>
-        option!.value!.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-      }
-      onChange={(e)=>jobsInfo.onJobLocChange(e)}
-    />
-  );
+  )
+}
+
+const SearchBar = (props: Props): JSX.Element => {
+  const jobsInfo:JobInfoHandlersInterface = useContext(jobsInfoContext).jobsInfo
+  const AutocompleteTitles = () => NewAutoComplete(jobsInfo, "jobsTitle", "onJobTitleChange", props.titleOptions)
+  const AutocompleteCountries = () => NewAutoComplete(jobsInfo, "jobsLoc", "onJobLocChange", props.countryOptions)
 
   return(
     <div className="SearchBar">

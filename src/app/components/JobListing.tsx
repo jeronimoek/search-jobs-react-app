@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react';
 import JobDesc from './JobDesc'
 import JobList from './JobListingComp/JobList'
-import {JobInterface, JobInfoInterface, CityInterface} from "../interfaces/jobInterfaces"
+import {JobInterface, JobInfoInterface, CityInterface, JobInfoHandlersInterface} from "../interfaces/jobInterfaces"
 import jobsInfoContext from '../jobsInfoContext';
 
 interface Props{
@@ -9,16 +9,10 @@ interface Props{
     jobs: JobInterface[]
   }
 }
-
-interface Info extends JobInfoInterface{
-  onJobTitleChange:(val: string)=>void
-  onJobLocChange:(val: string)=>void
-}
-
 const JobListing = (props: Props): JSX.Element => {
 
   const [selectedJobId, setSelectedJobId] = useState("")
-  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
+  const jobsInfo:JobInfoHandlersInterface = useContext(jobsInfoContext).jobsInfo
   
   const handleSelectedJobIdChange = (newSelectedJobId: string): void => {
     setSelectedJobId(newSelectedJobId)

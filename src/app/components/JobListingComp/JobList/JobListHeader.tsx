@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import {JobInfoInterface} from "../../../interfaces/jobInterfaces"
+import {JobInfoHandlersInterface, JobInfoInterface} from "../../../interfaces/jobInterfaces"
 import jobsInfoContext from "../../../jobsInfoContext"
 
 
@@ -9,13 +9,8 @@ interface Props {
   quantity: number
 }
 
-interface Info extends JobInfoInterface{
-  onJobTitleChange:(val: string)=>void
-  onJobLocChange:(val: string)=>void
-}
-
 const JobListHeader = (props: Props): JSX.Element=> {
-  const jobsInfo:Info = useContext(jobsInfoContext).jobsInfo
+  const jobsInfo:JobInfoHandlersInterface = useContext(jobsInfoContext).jobsInfo
   const jobsLoc = jobsInfo.jobsLoc
   const jobsTitle = jobsInfo.jobsTitle
   const resumenTexto = () => {
